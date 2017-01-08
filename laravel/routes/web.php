@@ -12,5 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'OK';
+    // return view('welcome');
 });
+
+Route::resource('articles', 'ArticlesController');
+
+Route::get('contact', 'PagesController@contact');
+Route::get('about', 'PagesController@about');
+
+
+// Route::get('articles', 'ArticlesController@index');
+// Route::get('articles/create', 'ArticlesController@create');
+// Route::post('articles', 'ArticlesController@store');
+// Route::get('articles/{id}/edit', 'ArticlesController@edit');
+// Route::get('articles/{id}', 'ArticlesController@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::get('foo', ['middleware' => 'manager', function(){
+  return 'this page may only be viewed by managers';
+}]);
+Route::get('tags/{tags}', 'TagsController@show');
